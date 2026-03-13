@@ -1,14 +1,48 @@
 import React from "react";
-import { useGraph } from "@react-three/fiber";
+import * as THREE from "three";
+import { useGraph, type ThreeElements } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
+import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-const Woman = (props) => {
-  const group = React.useRef();
-  const { scene, animations } = useGLTF("/woman.gltf");
+type GLTFResult = GLTF & {
+  nodes: {
+    mixamorigHips: THREE.Bone;
+    Mesh019: THREE.SkinnedMesh;
+    Mesh019_1: THREE.SkinnedMesh;
+    Mesh019_2: THREE.SkinnedMesh;
+    Mesh019_3: THREE.SkinnedMesh;
+    Mesh019_4: THREE.SkinnedMesh;
+    Mesh019_5: THREE.SkinnedMesh;
+    Mesh019_6: THREE.SkinnedMesh;
+    Mesh019_7: THREE.SkinnedMesh;
+    Mesh019_8: THREE.SkinnedMesh;
+    Mesh019_9: THREE.SkinnedMesh;
+  };
+  materials: {
+    Glasses: THREE.Material;
+    Eyes: THREE.Material;
+    Hair: THREE.Material;
+    Skin: THREE.Material;
+    Mouth: THREE.Material;
+    Shirt: THREE.Material;
+    Pants: THREE.Material;
+    Shoes: THREE.Material;
+    Sole: THREE.Material;
+    Laces: THREE.Material;
+  };
+};
+
+type GraphResult = Pick<GLTFResult, "nodes" | "materials">;
+
+const Woman = (props: ThreeElements["group"]) => {
+  const group = React.useRef<THREE.Group>(null);
+  const { scene, animations } = useGLTF(
+    "/models/woman.gltf",
+  ) as unknown as GLTFResult;
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
-  const { nodes, materials } = useGraph(clone);
-  const { actions } = useAnimations(animations, group);
+  const { nodes, materials } = useGraph(clone) as unknown as GraphResult;
+  useAnimations(animations, group);
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
@@ -82,6 +116,6 @@ const Woman = (props) => {
   );
 };
 
-useGLTF.preload("/woman.gltf");
+useGLTF.preload("/models/woman.gltf");
 
 export default Woman;

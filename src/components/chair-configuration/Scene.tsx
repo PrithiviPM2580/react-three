@@ -3,7 +3,6 @@ import {
   PresentationControls,
   Stage,
 } from "@react-three/drei";
-import { Suspense } from "react";
 import Chair from "./Chair";
 
 const Scene = () => {
