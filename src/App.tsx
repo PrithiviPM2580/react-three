@@ -1,5 +1,7 @@
+import ChairConfiguration from "./components/chair-configuration/ChairConfiguration";
+
 const App = () => {
-  return <div>App</div>;
+  return <ChairConfiguration />;
 };
 
 export default App;
