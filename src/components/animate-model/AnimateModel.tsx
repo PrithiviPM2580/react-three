@@ -5,7 +5,7 @@ import "./style.css";
 const AnimateModel = () => {
   return (
     <main className="app">
-      <Canvas>
+      <Canvas camera={{ position: [1, 1.5, 2.5], fov: 50 }}>
         <Scene />
       </Canvas>
     </main>

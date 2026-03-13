@@ -11,7 +11,9 @@ const Scene = () => {
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
       />
-      <Woman />
+      <group position={[0, -1, 0]}>
+        <Woman />
+      </group>
       <mesh
         rotation={[-0.5 * Math.PI, 0, 0]}
         position={[0, -1, 0]}
