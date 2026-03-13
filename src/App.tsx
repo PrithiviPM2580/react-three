@@ -1,7 +1,7 @@
-import ChairConfiguration from "./components/chair-configuration/ChairConfiguration";
+import AnimateModel from "./components/animate-model/AnimateModel";
 
 const App = () => {
-  return <ChairConfiguration />;
+  return <AnimateModel />;
 };
 
 export default App;
