@@ -3,12 +3,10 @@ import {
   PresentationControls,
   Stage,
 } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
 import { Suspense } from "react";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import Chair from "./Chair";
 
 const Scene = () => {
-  const gltf = useLoader(GLTFLoader, "/models/chair.gltf");
   return (
     <PresentationControls
       speed={1.5}
@@ -18,7 +16,7 @@ const Scene = () => {
     >
       <Stage environment={"city"} intensity={0.6} adjustCamera={false}>
         <Suspense fallback={null}>
-          <primitive object={gltf.scene} />
+          <Chair />
         </Suspense>
       </Stage>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.499, 0]}>
