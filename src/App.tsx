@@ -1,7 +1,7 @@
-import AnimateModel from "./components/animate-model/AnimateModel";
+import CharacterConfiguration from "./components/character-configuration/CharacterConfiguration";
 
 const App = () => {
-  return <AnimateModel />;
+  return <CharacterConfiguration />;
 };
 
 export default App;
