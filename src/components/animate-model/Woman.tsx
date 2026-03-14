@@ -4,6 +4,7 @@ import { useGraph, type ThreeElements } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { useCharacterAnimation } from "../../context/CharacterAnimation";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -43,10 +44,21 @@ const Woman = (props: ThreeElements["group"]) => {
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as unknown as GraphResult;
   const { actions, names } = useAnimations(animations, group);
+  const { animationIndex, setAnimations } = useCharacterAnimation();
 
   useEffect(() => {
-    actions[names[0]]?.reset().fadeIn(0.5).play();
-  }, []);
+    setAnimations(names);
+  }, [names, setAnimations]);
+
+  useEffect(() => {
+    const animationName = names[animationIndex];
+    if (!animationName) return;
+
+    actions[animationName]?.reset().fadeIn(0.5).play();
+    return () => {
+      actions[animationName]?.fadeOut(0.5);
+    };
+  }, [actions, names, animationIndex]);
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
