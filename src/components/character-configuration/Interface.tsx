@@ -3,6 +3,7 @@ import {
   CameraModes,
   useCharacterCustomization,
 } from "../../context/CharacterCustomization";
+import HeadConfigurator from "./HeadConfigurator";
 
 const Interface = () => {
   const { animations, animationIndex, setAnimationIndex } =
@@ -21,6 +22,9 @@ const Interface = () => {
             {mode}
           </button>
         ))}
+      </div>
+      <div className="head-interface">
+        {cameraMode === CameraModes.HEAD && <HeadConfigurator />}
       </div>
       <div className="bottom-interface">
         {animations.map((animation, index) => (

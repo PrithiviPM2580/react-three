@@ -1,9 +1,9 @@
-import { OrbitControls } from "@react-three/drei";
 import Woman from "./Woman";
+import CameraControl from "./CameraControl";
 const Scene = () => {
   return (
     <>
-      <OrbitControls />
+      <CameraControl />
       <ambientLight />
       <directionalLight
         position={[-5, 5, 5]}

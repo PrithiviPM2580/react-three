@@ -5,6 +5,7 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useCharacterAnimation } from "../../context/CharacterAnimation";
+import { useCharacterCustomization } from "../../context/CharacterCustomization";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -45,6 +46,7 @@ const Woman = (props: ThreeElements["group"]) => {
   const { nodes, materials } = useGraph(clone) as unknown as GraphResult;
   const { actions, names } = useAnimations(animations, group);
   const { animationIndex, setAnimations } = useCharacterAnimation();
+  const { hairColor } = useCharacterCustomization();
 
   useEffect(() => {
     setAnimations(names);
@@ -85,7 +87,9 @@ const Woman = (props: ThreeElements["group"]) => {
               geometry={nodes.Mesh019_2.geometry}
               material={materials.Hair}
               skeleton={nodes.Mesh019_2.skeleton}
-            />
+            >
+              <meshStandardMaterial {...materials.Hair} color={hairColor} />
+            </skinnedMesh>
             <skinnedMesh
               castShadow
               name="Mesh019_3"
