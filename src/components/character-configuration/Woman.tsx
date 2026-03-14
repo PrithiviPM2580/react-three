@@ -46,8 +46,17 @@ const Woman = (props: ThreeElements["group"]) => {
   const { nodes, materials } = useGraph(clone) as unknown as GraphResult;
   const { actions, names } = useAnimations(animations, group);
   const { animationIndex, setAnimations } = useCharacterAnimation();
-  const { hairColor, eyeColor, glassesColor, skinColor } =
-    useCharacterCustomization();
+  const {
+    hairColor,
+    eyeColor,
+    glassesColor,
+    skinColor,
+    pantsColor,
+    shoesColor,
+    soleColor,
+    lacesColor,
+    shirtColor,
+  } = useCharacterCustomization();
 
   useEffect(() => {
     setAnimations(names);
@@ -68,7 +77,23 @@ const Woman = (props: ThreeElements["group"]) => {
     (materials.Eyes as THREE.MeshStandardMaterial).color.set(eyeColor);
     (materials.Glasses as THREE.MeshStandardMaterial).color.set(glassesColor);
     (materials.Skin as THREE.MeshStandardMaterial).color.set(skinColor);
-  }, [materials, hairColor, eyeColor, glassesColor, skinColor]);
+    (materials.Pants as THREE.MeshStandardMaterial).color.set(pantsColor);
+    (materials.Shoes as THREE.MeshStandardMaterial).color.set(shoesColor);
+    (materials.Sole as THREE.MeshStandardMaterial).color.set(soleColor);
+    (materials.Laces as THREE.MeshStandardMaterial).color.set(lacesColor);
+    (materials.Shirt as THREE.MeshStandardMaterial).color.set(shirtColor);
+  }, [
+    materials,
+    hairColor,
+    eyeColor,
+    glassesColor,
+    skinColor,
+    pantsColor,
+    shoesColor,
+    soleColor,
+    lacesColor,
+    shirtColor,
+  ]);
 
   return (
     <group ref={group} {...props} dispose={null}>

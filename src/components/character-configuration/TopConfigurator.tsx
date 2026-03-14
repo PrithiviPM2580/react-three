@@ -5,46 +5,19 @@ import {
 import { useState } from "react";
 
 const TopConfigurator = () => {
-  const {
-    hairColor,
-    setHairColor,
-    eyeColor,
-    setEyeColor,
-    glassesColor,
-    setGlassesColor,
-    skinColor,
-    setSkinColor,
-  } = useCharacterCustomization();
+  const { shirtColor, setShirtColor } = useCharacterCustomization();
 
   const colorControls = [
     {
-      key: "hair",
-      label: "Hair",
-      value: hairColor,
-      setValue: setHairColor,
-    },
-    {
-      key: "eyes",
-      label: "Eyes",
-      value: eyeColor,
-      setValue: setEyeColor,
-    },
-    {
-      key: "glasses",
-      label: "Glasses",
-      value: glassesColor,
-      setValue: setGlassesColor,
-    },
-    {
-      key: "skin",
-      label: "Skin",
-      value: skinColor,
-      setValue: setSkinColor,
+      key: "shirt",
+      label: "Shirt",
+      value: shirtColor,
+      setValue: setShirtColor,
     },
   ] as const;
 
   const [activeControlKey, setActiveControlKey] =
-    useState<(typeof colorControls)[number]["key"]>("hair");
+    useState<(typeof colorControls)[number]["key"]>("shirt");
 
   const activeControl =
     colorControls.find((control) => control.key === activeControlKey) ??
@@ -54,7 +27,7 @@ const TopConfigurator = () => {
     <section className="head-color-card">
       <div className="head-color-header">
         <div>
-          <p className="head-color-eyebrow">Head Style</p>
+          <p className="head-color-eyebrow">Top Style</p>
           <h3 className="head-color-title">{activeControl.label} Color</h3>
         </div>
         <div

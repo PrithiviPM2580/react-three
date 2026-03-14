@@ -6,45 +6,45 @@ import { useState } from "react";
 
 const BottomConfigurator = () => {
   const {
-    hairColor,
-    setHairColor,
-    eyeColor,
-    setEyeColor,
-    glassesColor,
-    setGlassesColor,
-    skinColor,
-    setSkinColor,
+    pantsColor,
+    setPantsColor,
+    shoesColor,
+    setShoesColor,
+    soleColor,
+    setSoleColor,
+    lacesColor,
+    setLacesColor,
   } = useCharacterCustomization();
 
   const colorControls = [
     {
-      key: "hair",
-      label: "Hair",
-      value: hairColor,
-      setValue: setHairColor,
+      key: "pants",
+      label: "Pants",
+      value: pantsColor,
+      setValue: setPantsColor,
     },
     {
-      key: "eyes",
-      label: "Eyes",
-      value: eyeColor,
-      setValue: setEyeColor,
+      key: "shoes",
+      label: "Shoes",
+      value: shoesColor,
+      setValue: setShoesColor,
     },
     {
-      key: "glasses",
-      label: "Glasses",
-      value: glassesColor,
-      setValue: setGlassesColor,
+      key: "sole",
+      label: "Sole",
+      value: soleColor,
+      setValue: setSoleColor,
     },
     {
-      key: "skin",
-      label: "Skin",
-      value: skinColor,
-      setValue: setSkinColor,
+      key: "laces",
+      label: "Laces",
+      value: lacesColor,
+      setValue: setLacesColor,
     },
   ] as const;
 
   const [activeControlKey, setActiveControlKey] =
-    useState<(typeof colorControls)[number]["key"]>("hair");
+    useState<(typeof colorControls)[number]["key"]>("pants");
 
   const activeControl =
     colorControls.find((control) => control.key === activeControlKey) ??
@@ -54,7 +54,7 @@ const BottomConfigurator = () => {
     <section className="head-color-card">
       <div className="head-color-header">
         <div>
-          <p className="head-color-eyebrow">Head Style</p>
+          <p className="head-color-eyebrow">Bottom Style</p>
           <h3 className="head-color-title">{activeControl.label} Color</h3>
         </div>
         <div

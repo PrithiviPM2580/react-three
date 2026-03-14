@@ -5,6 +5,7 @@ import {
 } from "../../context/CharacterCustomization";
 import HeadConfigurator from "./HeadConfigurator";
 import TopConfigurator from "./TopConfigurator";
+import BottomConfigurator from "./BottomConfigurator";
 
 const Interface = () => {
   const { animations, animationIndex, setAnimationIndex } =
@@ -27,6 +28,7 @@ const Interface = () => {
       <div className="head-interface">
         {cameraMode === CameraModes.HEAD && <HeadConfigurator />}
         {cameraMode === CameraModes.TOP && <TopConfigurator />}
+        {cameraMode === CameraModes.BOTTOM && <BottomConfigurator />}
       </div>
       <div className="bottom-interface">
         {animations.map((animation, index) => (
