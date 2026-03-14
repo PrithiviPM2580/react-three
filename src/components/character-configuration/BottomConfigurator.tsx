@@ -4,7 +4,7 @@ import {
 } from "../../context/CharacterCustomization";
 import { useState } from "react";
 
-const HeadConfigurator = () => {
+const BottomConfigurator = () => {
   const {
     hairColor,
     setHairColor,
@@ -114,4 +114,4 @@ const HeadConfigurator = () => {
   );
 };
 
-export default HeadConfigurator;
+export default BottomConfigurator;

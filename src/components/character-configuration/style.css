@@ -116,6 +116,43 @@
   text-transform: uppercase;
 }
 
+.head-feature-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.head-feature-button {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(239, 245, 255, 0.82);
+  font-size: 0.72rem;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.head-feature-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.head-feature-button.active {
+  border-color: rgba(163, 233, 255, 0.45);
+  background: rgba(122, 210, 255, 0.14);
+  color: #ffffff;
+}
+
+.head-feature-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.92);
+  outline-offset: 2px;
+}
+
 .head-color-swatches {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));

@@ -46,7 +46,8 @@ const Woman = (props: ThreeElements["group"]) => {
   const { nodes, materials } = useGraph(clone) as unknown as GraphResult;
   const { actions, names } = useAnimations(animations, group);
   const { animationIndex, setAnimations } = useCharacterAnimation();
-  const { hairColor } = useCharacterCustomization();
+  const { hairColor, eyeColor, glassesColor, skinColor } =
+    useCharacterCustomization();
 
   useEffect(() => {
     setAnimations(names);
@@ -61,6 +62,14 @@ const Woman = (props: ThreeElements["group"]) => {
       actions[animationName]?.fadeOut(0.5);
     };
   }, [actions, names, animationIndex]);
+
+  useEffect(() => {
+    (materials.Hair as THREE.MeshStandardMaterial).color.set(hairColor);
+    (materials.Eyes as THREE.MeshStandardMaterial).color.set(eyeColor);
+    (materials.Glasses as THREE.MeshStandardMaterial).color.set(glassesColor);
+    (materials.Skin as THREE.MeshStandardMaterial).color.set(skinColor);
+  }, [materials, hairColor, eyeColor, glassesColor, skinColor]);
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
@@ -87,9 +96,7 @@ const Woman = (props: ThreeElements["group"]) => {
               geometry={nodes.Mesh019_2.geometry}
               material={materials.Hair}
               skeleton={nodes.Mesh019_2.skeleton}
-            >
-              <meshStandardMaterial {...materials.Hair} color={hairColor} />
-            </skinnedMesh>
+            />
             <skinnedMesh
               castShadow
               name="Mesh019_3"
