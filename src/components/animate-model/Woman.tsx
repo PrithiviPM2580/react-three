@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as THREE from "three";
 import { useGraph, type ThreeElements } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
@@ -42,7 +42,11 @@ const Woman = (props: ThreeElements["group"]) => {
   ) as unknown as GLTFResult;
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as unknown as GraphResult;
-  useAnimations(animations, group);
+  const { actions, names } = useAnimations(animations, group);
+
+  useEffect(() => {
+    actions[names[0]]?.reset().fadeIn(0.5).play();
+  }, []);
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
